@@ -1,0 +1,4 @@
+{
+	"name": "Epic Stack",
+	"install": "if [ -f .cursor/install.sh ]; then bash .cursor/install.sh; else if [ ! -f .env ]; then cp .env.example .env; fi; npm ci; npx prisma generate --sql; npx prisma migrate deploy; npx playwright install chromium; fi"
+}
