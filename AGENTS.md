@@ -13,10 +13,11 @@ npx prisma db seed
 ```
 
 `bash .cursor/install.sh` copies `.env.example` to `.env` when `.env` is
-missing. It then runs `npm ci`, `npx prisma generate --sql`,
-`npx prisma migrate deploy`, and `npx playwright install chromium`. Run it again
-after a lockfile change. A second run completes without changing a database that
-is already migrated.
+missing. It then runs `npm ci`, `npx prisma migrate deploy`,
+`npx prisma generate --sql`, and `npx playwright install chromium`. Migration
+runs first because `prisma generate --sql` reads the SQLite tables. Run the
+script again after a lockfile change. A second run completes without changing a
+database that is already migrated.
 
 `npx prisma db seed` creates the user `kody` with password `kodylovesyou`. The
 seed is not safe to run twice on the same database. Run it once on an empty
