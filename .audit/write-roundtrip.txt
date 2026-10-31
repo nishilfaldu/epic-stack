@@ -1,0 +1,5 @@
+file: copy of the Prisma 6 seed database
+prisma 7.10.1 user.update set kody.name to Kody Roundtrip
+row counts: 14 tables match .audit/baseline-seed-counts.tsv
+prisma 6.19.2 user.findUnique read kody.name as Kody Roundtrip
+row counts after that read: 14 tables match

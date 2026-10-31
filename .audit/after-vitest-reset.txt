@@ -1,0 +1,33 @@
+command: npm test -- --run
+this is the first Prisma 7 run, which reset the test database
+
+> test
+> vitest --run
+
+
+ RUN  v4.0.18 /workspace
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": SQLite database "base.db" at "file:/workspace/tests/prisma/base.db"
+
+Applying migration `20250221233640_init`
+
+Database reset successful
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20250221233640_init/
+    └─ migration.sql
+
+...
+ ✓ app/utils/sentry-event-filters.test.ts (3 tests) 8ms
+
+ Test Files  11 passed (11)
+      Tests  42 passed (42)
+   Start at  00:36:44
+   Duration  5.77s (transform 1.06s, setup 6.66s, import 3.15s, tests 2.44s, environment 710ms)
+
+EXIT:0
