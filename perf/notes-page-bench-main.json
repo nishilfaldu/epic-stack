@@ -1,0 +1,358 @@
+{
+  "claim": "Median of 10 full browser loads of /users/heavy/notes on a local production build. Assets warmed by one homepage load. Document cache avoided with a unique bench query. Alternating with the 3-note account. Reachability walks Older until every note id has been seen.",
+  "base": "http://127.0.0.1:3000",
+  "healthStatus": 200,
+  "expected": 5000,
+  "errors": [],
+  "heavy": {
+    "n": 10,
+    "statuses": [
+      200
+    ],
+    "noteLinks": [
+      5000
+    ],
+    "loadMs": {
+      "median": 265.19999999995343,
+      "min": 257.19999999995343,
+      "max": 318.5,
+      "values": [
+        318.5,
+        287,
+        263.29999999981374,
+        257.19999999995343,
+        260.9000000001397,
+        267.10000000009313,
+        263.0999999998603,
+        272.70000000018626,
+        285.60000000009313,
+        263.19999999995343
+      ]
+    },
+    "ttfbMs": {
+      "median": 95.15000000002328,
+      "min": 88.5,
+      "max": 131.80000000004657
+    },
+    "decodedBodySize": [
+      1339088
+    ],
+    "domNodes": [
+      10105
+    ]
+  },
+  "light": {
+    "n": 10,
+    "statuses": [
+      200
+    ],
+    "noteLinks": [
+      3
+    ],
+    "loadMs": {
+      "median": 38.79999999993015,
+      "min": 32,
+      "max": 50,
+      "values": [
+        32,
+        32.60000000009313,
+        45.5,
+        44.0999999998603,
+        33.10000000009313,
+        48.89999999990687,
+        34.199999999953434,
+        50,
+        33.39999999990687,
+        43.39999999990687
+      ]
+    },
+    "ttfbMs": {
+      "median": 8.099999999976717,
+      "min": 4.899999999906868,
+      "max": 17.399999999906868
+    },
+    "decodedBodySize": [
+      15789
+    ],
+    "domNodes": [
+      111
+    ]
+  },
+  "reachability": {
+    "seen": 5000,
+    "expected": 5000,
+    "complete": true,
+    "steps": [
+      {
+        "step": 0,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?bench=reach",
+        "visible": 5000,
+        "added": 5000,
+        "seen": 5000,
+        "olderCount": 0
+      }
+    ]
+  },
+  "loads": [
+    {
+      "username": "heavy",
+      "index": 0,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=0",
+      "loadMs": 318.5,
+      "dclMs": 260.60000000009313,
+      "ttfbMs": 131.80000000004657,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 0,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=0",
+      "loadMs": 32,
+      "dclMs": 28.699999999953434,
+      "ttfbMs": 8.199999999953434,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 1,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=1",
+      "loadMs": 287,
+      "dclMs": 266.0999999998603,
+      "ttfbMs": 112.4000000001397,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 1,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=1",
+      "loadMs": 32.60000000009313,
+      "dclMs": 29,
+      "ttfbMs": 5.900000000139698,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 2,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=2",
+      "loadMs": 263.29999999981374,
+      "dclMs": 260.29999999981374,
+      "ttfbMs": 89.80000000004657,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 2,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=2",
+      "loadMs": 45.5,
+      "dclMs": 42.300000000046566,
+      "ttfbMs": 13.800000000046566,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 3,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=3",
+      "loadMs": 257.19999999995343,
+      "dclMs": 254.5999999998603,
+      "ttfbMs": 97.69999999995343,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 3,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=3",
+      "loadMs": 44.0999999998603,
+      "dclMs": 39,
+      "ttfbMs": 8,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 4,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=4",
+      "loadMs": 260.9000000001397,
+      "dclMs": 206.60000000009313,
+      "ttfbMs": 93,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 4,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=4",
+      "loadMs": 33.10000000009313,
+      "dclMs": 29.5,
+      "ttfbMs": 7.600000000093132,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 5,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=5",
+      "loadMs": 267.10000000009313,
+      "dclMs": 223.19999999995343,
+      "ttfbMs": 95,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 5,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=5",
+      "loadMs": 48.89999999990687,
+      "dclMs": 43.699999999953434,
+      "ttfbMs": 15.300000000046566,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 6,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=6",
+      "loadMs": 263.0999999998603,
+      "dclMs": 200.19999999995343,
+      "ttfbMs": 93.0999999998603,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 6,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=6",
+      "loadMs": 34.199999999953434,
+      "dclMs": 31,
+      "ttfbMs": 5.099999999860302,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 7,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=7",
+      "loadMs": 272.70000000018626,
+      "dclMs": 270.10000000009313,
+      "ttfbMs": 88.5,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 7,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=7",
+      "loadMs": 50,
+      "dclMs": 43.300000000046566,
+      "ttfbMs": 17.399999999906868,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 8,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=8",
+      "loadMs": 285.60000000009313,
+      "dclMs": 240.4000000001397,
+      "ttfbMs": 99.4000000001397,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 8,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=8",
+      "loadMs": 33.39999999990687,
+      "dclMs": 30.399999999906868,
+      "ttfbMs": 10.099999999860302,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 9,
+      "status": 200,
+      "noteLinks": 5000,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=9",
+      "loadMs": 263.19999999995343,
+      "dclMs": 260,
+      "ttfbMs": 95.30000000004657,
+      "decodedBodySize": 1339088,
+      "domNodes": 10105,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 9,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=9",
+      "loadMs": 43.39999999990687,
+      "dclMs": 38.10000000009313,
+      "ttfbMs": 4.899999999906868,
+      "decodedBodySize": 15789,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    }
+  ]
+}
