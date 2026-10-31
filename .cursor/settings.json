@@ -1,0 +1,10 @@
+{
+	"plugins": {
+		"pstack": {
+			"enabled": true
+		}
+	},
+	"enabled_plugins": {
+		"pstack": ".cursor/plugins/pstack"
+	}
+}
