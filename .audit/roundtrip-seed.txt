@@ -1,0 +1,6 @@
+file: /tmp/prisma-compat/roundtrip.db
+created on main with prisma 6.19.2 migrate deploy and db seed
+prisma 7.10.1 findUnique kody and searchUsers: 14 tables match .audit/baseline-seed-counts.tsv
+prisma 6.19.2 findUnique kody and searchUsers after that read: 14 tables match
+prisma 7.10.1 migrate deploy on the same file: No pending migrations to apply. 14 tables match
+checker: python3 scripts/sqlite-row-counts.py <db> .audit/baseline-seed-counts.tsv

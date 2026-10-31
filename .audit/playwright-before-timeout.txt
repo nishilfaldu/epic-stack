@@ -1,0 +1,7 @@
+command: npx playwright test --reporter=line
+before libSQL timeout was set to 5000
+
+Operation has timed out
+[WebServer] Operation has timed out
+SQLITE_BUSY: database is locked
+3 failed

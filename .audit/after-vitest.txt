@@ -1,0 +1,141 @@
+
+> test
+> vitest --run
+
+
+ RUN  v4.0.18 /workspace
+
+stdout | app/routes/_auth/forgot-password.test.ts > emailed reset link ignores an untrusted X-Forwarded-Host
+🔶 mocked email contents: {
+  from: 'hello@epicstack.dev',
+  to: 'pd_angus_corkery@example.com',
+  subject: 'Epic Notes Password Reset',
+  html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head></head><!--$--><!--html--><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em"><tbody><tr style="width:100%"><td><h1><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Epic Notes Password Reset</p></h1><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Here&#x27;s your verification code: <strong>8S8YY6</strong></p></p><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Or click the link:</p></p><a href="https://www.epicstack.dev/verify?type=reset-password&amp;target=pd_angus_corkery&amp;code=8S8YY6" style="color:#067df7;text-decoration-line:none" target="_blank">https://www.epicstack.dev/verify?type=reset-password&amp;target=pd_angus_corkery&amp;code=8S8YY6</a></td></tr></tbody></table><!--/$--></html>',
+  text: 'EPIC NOTES PASSWORD RESET\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    "Here's your verification code: 8S8YY6\n" +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'Or click the link:\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'https://www.epicstack.dev/verify?type=reset-password&target=pd_angus_corkery&code=8S8YY6'
+}
+
+stdout | app/routes/_auth/forgot-password.test.ts > emailed reset link falls back to the canonical host for an untrusted Host header
+🔶 mocked email contents: {
+  from: 'hello@epicstack.dev',
+  to: 'ij_jason_rodriguez61@example.com',
+  subject: 'Epic Notes Password Reset',
+  html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head></head><!--$--><!--html--><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em"><tbody><tr style="width:100%"><td><h1><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Epic Notes Password Reset</p></h1><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Here&#x27;s your verification code: <strong>MRV693</strong></p></p><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Or click the link:</p></p><a href="https://www.epicstack.dev/verify?type=reset-password&amp;target=ij_jason_rodriguez61%40example.com&amp;code=MRV693" style="color:#067df7;text-decoration-line:none" target="_blank">https://www.epicstack.dev/verify?type=reset-password&amp;target=ij_jason_rodriguez61%40example.com&amp;code=MRV693</a></td></tr></tbody></table><!--/$--></html>',
+  text: 'EPIC NOTES PASSWORD RESET\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    "Here's your verification code: MRV693\n" +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'Or click the link:\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'https://www.epicstack.dev/verify?type=reset-password&target=ij_jason_rodriguez61%40example.com&code=MRV693'
+}
+
+stdout | app/routes/_auth/forgot-password.test.ts > emailed reset link uses the request host when it is allowed
+🔶 mocked email contents: {
+  from: 'hello@epicstack.dev',
+  to: 'sj_joy_hand81@example.com',
+  subject: 'Epic Notes Password Reset',
+  html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head></head><!--$--><!--html--><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em"><tbody><tr style="width:100%"><td><h1><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Epic Notes Password Reset</p></h1><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Here&#x27;s your verification code: <strong>1RWJWJ</strong></p></p><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Or click the link:</p></p><a href="https://epicstack.dev/verify?type=reset-password&amp;target=sj_joy_hand81&amp;code=1RWJWJ" style="color:#067df7;text-decoration-line:none" target="_blank">https://epicstack.dev/verify?type=reset-password&amp;target=sj_joy_hand81&amp;code=1RWJWJ</a></td></tr></tbody></table><!--/$--></html>',
+  text: 'EPIC NOTES PASSWORD RESET\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    "Here's your verification code: 1RWJWJ\n" +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'Or click the link:\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'https://epicstack.dev/verify?type=reset-password&target=sj_joy_hand81&code=1RWJWJ'
+}
+
+stdout | app/routes/_auth/forgot-password.test.ts > the Fly.io app hostname is allowed without configuration
+🔶 mocked email contents: {
+  from: 'hello@epicstack.dev',
+  to: '0v_travis_vonrueden@example.com',
+  subject: 'Epic Notes Password Reset',
+  html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head></head><!--$--><!--html--><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em"><tbody><tr style="width:100%"><td><h1><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Epic Notes Password Reset</p></h1><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Here&#x27;s your verification code: <strong>6ABLK7</strong></p></p><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Or click the link:</p></p><a href="https://epic-stack-test.fly.dev/verify?type=reset-password&amp;target=0v_travis_vonrueden&amp;code=6ABLK7" style="color:#067df7;text-decoration-line:none" target="_blank">https://epic-stack-test.fly.dev/verify?type=reset-password&amp;target=0v_travis_vonrueden&amp;code=6ABLK7</a></td></tr></tbody></table><!--/$--></html>',
+  text: 'EPIC NOTES PASSWORD RESET\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    "Here's your verification code: 6ABLK7\n" +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'Or click the link:\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'https://epic-stack-test.fly.dev/verify?type=reset-password&target=0v_travis_vonrueden&code=6ABLK7'
+}
+
+stdout | app/routes/_auth/forgot-password.test.ts > falls back to the Fly.io app hostname for an untrusted host
+🔶 mocked email contents: {
+  from: 'hello@epicstack.dev',
+  to: 'k5_eusebio_cartwrigh@example.com',
+  subject: 'Epic Notes Password Reset',
+  html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head></head><!--$--><!--html--><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:37.5em"><tbody><tr style="width:100%"><td><h1><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Epic Notes Password Reset</p></h1><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Here&#x27;s your verification code: <strong>TPDG8T</strong></p></p><p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Or click the link:</p></p><a href="https://epic-stack-test.fly.dev/verify?type=reset-password&amp;target=k5_eusebio_cartwrigh&amp;code=TPDG8T" style="color:#067df7;text-decoration-line:none" target="_blank">https://epic-stack-test.fly.dev/verify?type=reset-password&amp;target=k5_eusebio_cartwrigh&amp;code=TPDG8T</a></td></tr></tbody></table><!--/$--></html>',
+  text: 'EPIC NOTES PASSWORD RESET\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    "Here's your verification code: TPDG8T\n" +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'Or click the link:\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    'https://epic-stack-test.fly.dev/verify?type=reset-password&target=k5_eusebio_cartwrigh&code=TPDG8T'
+}
+
+ ✓ app/routes/_auth/forgot-password.test.ts (5 tests) 166ms
+ ✓ app/routes/_auth/verify.test.ts (6 tests) 129ms
+ ✓ app/routes/_auth/auth.$provider/callback.test.ts (9 tests) 190ms
+ ✓ app/utils/misc.use-double-check.test.tsx (3 tests) 187ms
+ ✓ app/utils/auth.server.test.ts (5 tests) 1025ms
+     ✓ checkIsCommonPassword times out after 1 second  1002ms
+ ✓ app/utils/sentry-event-filters.test.ts (3 tests) 7ms
+ ✓ app/routes/users/$username/index.test.tsx (2 tests) 319ms
+ ✓ app/routes/resources/theme-switch.test.ts (2 tests) 14ms
+ ✓ app/utils/headers.server.test.ts (3 tests) 7ms
+ ✓ app/routes/_auth/reset-password.test.ts (1 test) 271ms
+ ✓ app/utils/misc.error-message.test.ts (3 tests) 6ms
+
+ Test Files  11 passed (11)
+      Tests  42 passed (42)
+   Start at  00:45:05
+   Duration  4.72s (transform 1.15s, setup 6.23s, import 2.95s, tests 2.32s, environment 674ms)
+
+EXIT:0

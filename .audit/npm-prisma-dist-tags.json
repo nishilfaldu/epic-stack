@@ -1,0 +1,11 @@
+{
+  "turso": "5.4.0-dev.61",
+  "early-access": "5.12.0-dev.21",
+  "typed-sql": "5.19.0-integration-feat-typed-sql.14",
+  "patch-dev": "7.9.1-dev.1",
+  "integration": "7.10.0-integration-fix-prisma-publish-token.1",
+  "next": "8.0.0-rc.10",
+  "prev": "7.10.1",
+  "dev": "8.0.0-rc.29-dev.176",
+  "latest": "8.0.0-rc.29"
+}
