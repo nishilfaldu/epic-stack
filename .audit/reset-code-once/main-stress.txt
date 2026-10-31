@@ -1,0 +1,390 @@
+
+ RUN  v4.0.18 /workspace
+
+ × app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together 346ms
+   → {"attempts":50,"doubled":50,"refused":0,"results":[{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]}]}: expected { attempts: 50, doubled: 50, …(2) } to deeply equal { attempts: 50, doubled: +0, …(2) }
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together
+AssertionError: {"attempts":50,"doubled":50,"refused":0,"results":[{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]},{"reset":2,"invalid":0,"other":[]}]}: expected { attempts: 50, doubled: 50, …(2) } to deeply equal { attempts: 50, doubled: +0, …(2) }
+
+- Expected
++ Received
+
+  {
+    "attempts": 50,
+-   "doubled": 0,
+-   "refused": 50,
++   "doubled": 50,
++   "refused": 0,
+    "results": [
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+    ],
+  }
+
+ ❯ app/routes/_auth/reset-password-concurrency.test.ts:61:43
+     59|  const summary = { attempts: ATTEMPTS, doubled, refused, results }
+     60| 
+     61|  expect(summary, JSON.stringify(summary)).toEqual({
+       |                                           ^
+     62|   attempts: ATTEMPTS,
+     63|   doubled: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  00:29:30
+   Duration  1.67s (transform 230ms, setup 501ms, import 625ms, tests 348ms, environment 0ms)
+
