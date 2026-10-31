@@ -1,0 +1,75 @@
+
+ RUN  v4.0.18 /workspace
+
+ × app/routes/users/$username/notes/$noteId.test.ts > a regular user cannot delete a note they do not own 40ms
+   → expected 302 to be 403 // Object.is equality
+   → expected false to be true // Object.is equality
+ ✓ app/routes/users/$username/notes/$noteId.test.ts > the owner can delete their own note 11ms
+ × app/routes/users/$username/notes/$noteId.test.ts > an admin can delete another user note 9ms
+   → expected 403 to be 302 // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  app/routes/users/$username/notes/$noteId.test.ts > a regular user cannot delete a note they do not own
+AssertionError: expected 302 to be 403 // Object.is equality
+
+- Expected
++ Received
+
+- 403
++ 302
+
+ ❯ app/routes/users/$username/notes/$noteId.test.ts:82:32
+     80|  )
+     81| 
+     82|  expect.soft(statusOf(result)).toBe(403)
+       |                                ^
+     83|  expect(await noteExists(note.id)).toBe(true)
+     84| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  app/routes/users/$username/notes/$noteId.test.ts > a regular user cannot delete a note they do not own
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ app/routes/users/$username/notes/$noteId.test.ts:83:36
+     81| 
+     82|  expect.soft(statusOf(result)).toBe(403)
+     83|  expect(await noteExists(note.id)).toBe(true)
+       |                                    ^
+     84| })
+     85| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  app/routes/users/$username/notes/$noteId.test.ts > an admin can delete another user note
+AssertionError: expected 403 to be 302 // Object.is equality
+
+- Expected
++ Received
+
+- 302
++ 403
+
+ ❯ app/routes/users/$username/notes/$noteId.test.ts:112:27
+    110|  )
+    111| 
+    112|  expect(statusOf(result)).toBe(302)
+       |                           ^
+    113|  expect(result).toHaveRedirect(`/users/${owner.username}/notes`)
+    114|  expect(await noteExists(note.id)).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  00:32:54
+   Duration  1.73s (transform 210ms, setup 539ms, import 923ms, tests 61ms, environment 0ms)
+
