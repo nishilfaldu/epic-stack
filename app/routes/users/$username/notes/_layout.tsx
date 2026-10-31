@@ -1,28 +1,14 @@
-import { invariantResponse } from '@epic-web/invariant'
 import { Img } from 'openimg/react'
 import { Link, NavLink, Outlet } from 'react-router'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
-import { prisma } from '#app/utils/db.server.ts'
 import { cn, getUserImgSrc } from '#app/utils/misc.tsx'
+import { loadNotesSidebar } from '#app/utils/note-access.server.ts'
 import { useOptionalUser } from '#app/utils/user.ts'
 import { type Route } from './+types/_layout.ts'
 
-export async function loader({ params }: Route.LoaderArgs) {
-	const owner = await prisma.user.findFirst({
-		select: {
-			id: true,
-			name: true,
-			username: true,
-			image: { select: { objectKey: true } },
-			notes: { select: { id: true, title: true } },
-		},
-		where: { username: params.username },
-	})
-
-	invariantResponse(owner, 'Owner not found', { status: 404 })
-
-	return { owner }
+export async function loader({ params, request }: Route.LoaderArgs) {
+	return loadNotesSidebar(request, params.username)
 }
 
 export default function NotesRoute({ loaderData }: Route.ComponentProps) {
@@ -79,6 +65,29 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 								</li>
 							))}
 						</ul>
+						{isOwner ? (
+							<div className="overflow-x-hidden overflow-y-auto pb-12">
+								<h2 className="px-8 pt-6 text-base font-bold lg:text-xl">
+									Shared with me
+								</h2>
+								<ul>
+									{loaderData.sharedNotes.map((note) => (
+										<li key={note.id} className="p-1 pr-0">
+											<NavLink
+												to={`/users/${note.ownerUsername}/notes/${note.id}`}
+												preventScrollReset
+												prefetch="intent"
+												className={({ isActive }) =>
+													cn(navLinkDefaultClassName, isActive && 'bg-accent')
+												}
+											>
+												{note.title}
+											</NavLink>
+										</li>
+									))}
+								</ul>
+							</div>
+						) : null}
 					</div>
 				</div>
 				<div className="bg-accent relative col-span-3 md:rounded-r-3xl">

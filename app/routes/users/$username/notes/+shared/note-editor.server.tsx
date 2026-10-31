@@ -1,10 +1,11 @@
 import { parseWithZod } from '@conform-to/zod'
+import { invariantResponse } from '@epic-web/invariant'
 import { parseFormData } from '@mjackson/form-data-parser'
 import { createId as cuid } from '@paralleldrive/cuid2'
 import { data, redirect, type ActionFunctionArgs } from 'react-router'
-import { z } from 'zod'
 import { requireUserId } from '#app/utils/auth.server.ts'
 import { prisma } from '#app/utils/db.server.ts'
+import { requireNoteUpdate } from '#app/utils/note-access.server.ts'
 import { uploadNoteImage } from '#app/utils/storage.server.ts'
 import {
 	MAX_UPLOAD_SIZE,
@@ -24,28 +25,23 @@ function imageHasId(
 	return Boolean(image.id)
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request, params }: ActionFunctionArgs) {
 	const userId = await requireUserId(request)
 
 	const formData = await parseFormData(request, {
 		maxFileSize: MAX_UPLOAD_SIZE,
 	})
+	const noteIdField = formData.get('id')
+	if (typeof noteIdField === 'string' && noteIdField !== '') {
+		invariantResponse(params.username, 'Not found', { status: 404 })
+		await requireNoteUpdate(request, {
+			ownerUsername: params.username,
+			noteId: noteIdField,
+		})
+	}
 
 	const submission = await parseWithZod(formData, {
-		schema: NoteEditorSchema.superRefine(async (data, ctx) => {
-			if (!data.id) return
-
-			const note = await prisma.note.findUnique({
-				select: { id: true },
-				where: { id: data.id, ownerId: userId },
-			})
-			if (!note) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message: 'Note not found',
-				})
-			}
-		}).transform(async ({ images = [], ...data }) => {
+		schema: NoteEditorSchema.transform(async ({ images = [], ...data }) => {
 			const noteId = data.id ?? cuid()
 			return {
 				...data,

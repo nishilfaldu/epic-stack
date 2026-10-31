@@ -1,61 +1,60 @@
-import { getFormProps, useForm } from '@conform-to/react'
-import { parseWithZod } from '@conform-to/zod'
-import { invariantResponse } from '@epic-web/invariant'
-import { formatDistanceToNow } from 'date-fns'
+import { getFormProps, getInputProps, useForm } from '@conform-to/react'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod'
 import { Img } from 'openimg/react'
 import { useRef, useEffect } from 'react'
-import { data, Form, Link } from 'react-router'
+import { data, Form, Link, redirect } from 'react-router'
 import { z } from 'zod'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { floatingToolbarClassName } from '#app/components/floating-toolbar.tsx'
-import { ErrorList } from '#app/components/forms.tsx'
+import { ErrorList, Field } from '#app/components/forms.tsx'
 import { Button } from '#app/components/ui/button.tsx'
 import { Icon } from '#app/components/ui/icon.tsx'
 import { StatusButton } from '#app/components/ui/status-button.tsx'
-import { prisma } from '#app/utils/db.server.ts'
+import { requireUserId } from '#app/utils/auth.server.ts'
 import { getNoteImgSrc, useIsPending } from '#app/utils/misc.tsx'
-import { requireUserWithPermission } from '#app/utils/permissions.server.ts'
+import {
+	deleteNote,
+	grantOrUpdateShare,
+	loadNotePage,
+	revokeShare,
+} from '#app/utils/note-access.server.ts'
 import { redirectWithToast } from '#app/utils/toast.server.ts'
-import { userHasPermission, useOptionalUser } from '#app/utils/user.ts'
 import { type Route } from './+types/$noteId.ts'
 import { type Route as NotesRoute } from './+types/_layout.ts'
 
-export async function loader({ params }: Route.LoaderArgs) {
-	const note = await prisma.note.findUnique({
-		where: { id: params.noteId },
-		select: {
-			id: true,
-			title: true,
-			content: true,
-			ownerId: true,
-			updatedAt: true,
-			images: {
-				select: {
-					id: true,
-					altText: true,
-					objectKey: true,
-				},
-			},
-		},
+export async function loader({ params, request }: Route.LoaderArgs) {
+	return loadNotePage(request, {
+		ownerUsername: params.username,
+		noteId: params.noteId,
 	})
-
-	invariantResponse(note, 'Not found', { status: 404 })
-
-	const date = new Date(note.updatedAt)
-	const timeAgo = formatDistanceToNow(date)
-
-	return { note, timeAgo }
 }
 
-const DeleteFormSchema = z.object({
-	intent: z.literal('delete-note'),
-	noteId: z.string(),
+const NoteActionSchema = z.discriminatedUnion('intent', [
+	z.object({
+		intent: z.literal('delete-note'),
+		noteId: z.string(),
+	}),
+	z.object({
+		intent: z.literal('share'),
+		recipientUsername: z.string().min(1, 'Username is required'),
+		role: z.enum(['viewer', 'editor']),
+	}),
+	z.object({
+		intent: z.literal('revoke'),
+		recipientUsername: z.string().min(1, 'Username is required'),
+	}),
+])
+
+const ShareFormSchema = z.object({
+	recipientUsername: z.string().min(1, 'Username is required'),
+	role: z.enum(['viewer', 'editor']),
 })
 
-export async function action({ request }: Route.ActionArgs) {
+export async function action({ request, params }: Route.ActionArgs) {
+	await requireUserId(request)
 	const formData = await request.formData()
 	const submission = parseWithZod(formData, {
-		schema: DeleteFormSchema,
+		schema: NoteActionSchema,
 	})
 	if (submission.status !== 'success') {
 		return data(
@@ -64,36 +63,85 @@ export async function action({ request }: Route.ActionArgs) {
 		)
 	}
 
-	const { noteId } = submission.value
+	switch (submission.value.intent) {
+		case 'delete-note': {
+			const ownerUsername = await deleteNote(request, {
+				ownerUsername: params.username,
+				noteId: submission.value.noteId,
+			})
+			return redirectWithToast(`/users/${ownerUsername}/notes`, {
+				type: 'success',
+				title: 'Success',
+				description: 'Your note has been deleted.',
+			})
+		}
+		case 'share': {
+			const result = await grantOrUpdateShare(request, {
+				ownerUsername: params.username,
+				noteId: params.noteId,
+				recipientUsername: submission.value.recipientUsername,
+				role: submission.value.role,
+			})
+			if (!result.ok) {
+				return data(
+					{
+						result: submission.reply({
+							fieldErrors: {
+								recipientUsername: [shareErrorText(result.error)],
+							},
+						}),
+					},
+					{ status: 400 },
+				)
+			}
+			return redirect(`/users/${params.username}/notes/${params.noteId}`)
+		}
+		case 'revoke': {
+			const result = await revokeShare(request, {
+				ownerUsername: params.username,
+				noteId: params.noteId,
+				recipientUsername: submission.value.recipientUsername,
+			})
+			if (!result.ok) {
+				return data(
+					{
+						result: submission.reply({
+							fieldErrors: {
+								recipientUsername: [shareErrorText(result.error)],
+							},
+						}),
+					},
+					{ status: 400 },
+				)
+			}
+			return redirect(`/users/${params.username}/notes/${params.noteId}`)
+		}
+		default: {
+			const unexpected: never = submission.value
+			throw new Error(`Unexpected note action ${String(unexpected)}`)
+		}
+	}
+}
 
-	const note = await prisma.note.findFirst({
-		select: { id: true, owner: { select: { username: true } } },
-		where: { id: noteId },
-	})
-	invariantResponse(note, 'Not found', { status: 404 })
-
-	await requireUserWithPermission(request, 'delete:note:own')
-
-	await prisma.note.delete({ where: { id: note.id } })
-
-	return redirectWithToast(`/users/${note.owner.username}/notes`, {
-		type: 'success',
-		title: 'Success',
-		description: 'Your note has been deleted.',
-	})
+function shareErrorText(error: 'unknown-user' | 'self') {
+	switch (error) {
+		case 'unknown-user':
+			return 'No user with that username exists'
+		case 'self':
+			return 'You cannot share a note with yourself'
+		default: {
+			const unexpected: never = error
+			throw new Error(`Unexpected share error ${String(unexpected)}`)
+		}
+	}
 }
 
 export default function NoteRoute({
 	loaderData,
 	actionData,
 }: Route.ComponentProps) {
-	const user = useOptionalUser()
-	const isOwner = user?.id === loaderData.note.ownerId
-	const canDelete = userHasPermission(
-		user,
-		isOwner ? `delete:note:own` : `delete:note:any`,
-	)
-	const displayBar = canDelete || isOwner
+	const { chrome } = loaderData
+	const displayBar = chrome.showDelete || chrome.showEdit
 
 	// Add ref for auto-focusing
 	const sectionRef = useRef<HTMLElement>(null)
@@ -134,6 +182,9 @@ export default function NoteRoute({
 				<p className="text-sm whitespace-break-spaces md:text-lg">
 					{loaderData.note.content}
 				</p>
+				{chrome.showShare ? (
+					<ShareNote actionData={actionData} shares={loaderData.shares} />
+				) : null}
 			</div>
 			{displayBar ? (
 				<div className={floatingToolbarClassName}>
@@ -143,23 +194,115 @@ export default function NoteRoute({
 						</Icon>
 					</span>
 					<div className="grid flex-1 grid-cols-2 justify-end gap-2 min-[525px]:flex md:gap-4">
-						{canDelete ? (
+						{chrome.showDelete ? (
 							<DeleteNote id={loaderData.note.id} actionData={actionData} />
 						) : null}
-						<Button
-							asChild
-							className="min-[525px]:max-md:aspect-square min-[525px]:max-md:px-0"
-						>
-							<Link to="edit">
-								<Icon name="pencil-1" className="scale-125 max-md:scale-150">
-									<span className="max-md:hidden">Edit</span>
-								</Icon>
-							</Link>
-						</Button>
+						{chrome.showEdit ? (
+							<Button
+								asChild
+								className="min-[525px]:max-md:aspect-square min-[525px]:max-md:px-0"
+							>
+								<Link to="edit">
+									<Icon name="pencil-1" className="scale-125 max-md:scale-150">
+										<span className="max-md:hidden">Edit</span>
+									</Icon>
+								</Link>
+							</Button>
+						) : null}
 					</div>
 				</div>
 			) : null}
 		</section>
+	)
+}
+
+function ShareNote({
+	actionData,
+	shares,
+}: {
+	actionData: Route.ComponentProps['actionData']
+	shares: Route.ComponentProps['loaderData']['shares']
+}) {
+	const isPending = useIsPending()
+	const [form, fields] = useForm({
+		id: 'share-note',
+		constraint: getZodConstraint(ShareFormSchema),
+		lastResult: actionData?.result,
+		onValidate({ formData }) {
+			return parseWithZod(formData, { schema: ShareFormSchema })
+		},
+		defaultValue: { role: 'viewer' },
+		shouldRevalidate: 'onBlur',
+	})
+
+	return (
+		<div className="mt-8 flex flex-col gap-4">
+			<Form method="POST" {...getFormProps(form)}>
+				<Field
+					labelProps={{ children: 'Username' }}
+					inputProps={{
+						...getInputProps(fields.recipientUsername, { type: 'text' }),
+					}}
+					errors={fields.recipientUsername.errors}
+				/>
+				<fieldset className="flex gap-4">
+					<legend className="sr-only">Role</legend>
+					<label>
+						<input
+							{...getInputProps(fields.role, {
+								type: 'radio',
+								value: 'viewer',
+							})}
+						/>{' '}
+						Viewer
+					</label>
+					<label>
+						<input
+							{...getInputProps(fields.role, {
+								type: 'radio',
+								value: 'editor',
+							})}
+						/>{' '}
+						Editor
+					</label>
+				</fieldset>
+				<ErrorList errors={fields.role.errors} id={fields.role.errorId} />
+				<StatusButton
+					type="submit"
+					name="intent"
+					value="share"
+					status={isPending ? 'pending' : (form.status ?? 'idle')}
+					disabled={isPending}
+				>
+					Share
+				</StatusButton>
+			</Form>
+			<ul className="flex flex-col gap-2">
+				{shares.map((share) => (
+					<li key={share.recipientUsername}>
+						<Form method="POST" className="flex items-center gap-3">
+							<input
+								type="hidden"
+								name="recipientUsername"
+								value={share.recipientUsername}
+							/>
+							<span>{share.recipientUsername}</span>
+							<span>{share.role}</span>
+							<StatusButton
+								type="submit"
+								name="intent"
+								value="revoke"
+								variant="destructive"
+								status="idle"
+								aria-label={`Revoke ${share.recipientUsername}`}
+							>
+								Revoke
+							</StatusButton>
+						</Form>
+					</li>
+				))}
+			</ul>
+		</div>
 	)
 }
 
