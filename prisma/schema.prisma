@@ -20,13 +20,14 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  image       UserImage?
-  password    Password?
-  notes       Note[]
-  roles       Role[]
-  sessions    Session[]
-  connections Connection[]
-  passkey     Passkey[]
+  image          UserImage?
+  password       Password?
+  notes          Note[]
+  sharesReceived NoteShare[] @relation("NoteShareRecipient")
+  roles          Role[]
+  sessions       Session[]
+  connections    Connection[]
+  passkey        Passkey[]
 }
 
 model Note {
@@ -41,11 +42,31 @@ model Note {
   ownerId String
 
   images NoteImage[]
+  shares NoteShare[]
 
   // non-unique foreign key
   @@index([ownerId])
   // This helps our order by in the user search a LOT
   @@index([ownerId, updatedAt])
+}
+
+enum NoteShareRole {
+  viewer
+  editor
+}
+
+model NoteShare {
+  noteId      String
+  recipientId String
+  role        NoteShareRole
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  note      Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  recipient User @relation("NoteShareRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, recipientId])
+  @@index([recipientId])
 }
 
 model NoteImage {

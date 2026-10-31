@@ -1,33 +1,17 @@
-import { invariantResponse } from '@epic-web/invariant'
 import { GeneralErrorBoundary } from '#app/components/error-boundary.tsx'
 import { requireUserId } from '#app/utils/auth.server.ts'
-import { prisma } from '#app/utils/db.server.ts'
+import { requireNoteUpdate } from '#app/utils/note-access.server.ts'
 import { NoteEditor } from './+shared/note-editor.tsx'
 import { type Route } from './+types/$noteId_.edit.ts'
 
 export { action } from './+shared/note-editor.server.tsx'
 
 export async function loader({ params, request }: Route.LoaderArgs) {
-	const userId = await requireUserId(request)
-	const note = await prisma.note.findFirst({
-		select: {
-			id: true,
-			title: true,
-			content: true,
-			images: {
-				select: {
-					id: true,
-					altText: true,
-					objectKey: true,
-				},
-			},
-		},
-		where: {
-			id: params.noteId,
-			ownerId: userId,
-		},
+	await requireUserId(request)
+	const note = await requireNoteUpdate(request, {
+		ownerUsername: params.username,
+		noteId: params.noteId,
 	})
-	invariantResponse(note, 'Not found', { status: 404 })
 	return { note }
 }
 
@@ -42,6 +26,7 @@ export function ErrorBoundary() {
 	return (
 		<GeneralErrorBoundary
 			statusHandlers={{
+				403: () => <p>You are not allowed to do that</p>,
 				404: ({ params }) => (
 					<p>No note with the id "{params.noteId}" exists</p>
 				),
