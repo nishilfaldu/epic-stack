@@ -1,0 +1,106 @@
+{
+  "status": 200,
+  "eventCount": 9404,
+  "ranked": [
+    {
+      "name": "RunTask",
+      "ms": 222
+    },
+    {
+      "name": "WebFrameWidgetImpl::UpdateLifecycle",
+      "ms": 117.8
+    },
+    {
+      "name": "LocalFrameView::RunStyleAndLayoutLifecyclePhases",
+      "ms": 91.2
+    },
+    {
+      "name": "LocalFrameView::UpdateStyleAndLayout",
+      "ms": 91
+    },
+    {
+      "name": "LocalFrameView::layout",
+      "ms": 65.1
+    },
+    {
+      "name": "Layout",
+      "ms": 65.1
+    },
+    {
+      "name": "Blink.Layout.UpdateTime",
+      "ms": 65
+    },
+    {
+      "name": "LocalFrameView::performLayout",
+      "ms": 64.6
+    },
+    {
+      "name": "HTMLDocumentParser::PumpTokenizerIfPossible",
+      "ms": 43.1
+    },
+    {
+      "name": "HTMLDocumentParser::DeferredPumpTokenizerIfPossible",
+      "ms": 43.1
+    },
+    {
+      "name": "HTMLDocumentParser::PumpTokenizer",
+      "ms": 34.9
+    },
+    {
+      "name": "ParseHTML",
+      "ms": 34.8
+    },
+    {
+      "name": "UpdateLayoutTree",
+      "ms": 33.8
+    },
+    {
+      "name": "Blink.Style.UpdateTime",
+      "ms": 33.6
+    },
+    {
+      "name": "Document::updateStyle",
+      "ms": 33.4
+    },
+    {
+      "name": "Document::recalcStyle",
+      "ms": 23.9
+    },
+    {
+      "name": "ResourceFetcher::requestResource",
+      "ms": 17
+    },
+    {
+      "name": "v8.compileModule",
+      "ms": 13.1
+    },
+    {
+      "name": "InlineNode::ShapeTextIncludingFirstLine",
+      "ms": 12.7
+    },
+    {
+      "name": "LocalFrameView::DidFinishLifecycleUpdate",
+      "ms": 9.9
+    },
+    {
+      "name": "PrePaint",
+      "ms": 9.7
+    },
+    {
+      "name": "Document::rebuildLayoutTree",
+      "ms": 9.3
+    },
+    {
+      "name": "Document::FinishedParsing",
+      "ms": 8.4
+    },
+    {
+      "name": "RasterTask",
+      "ms": 8.1
+    },
+    {
+      "name": "HTMLDocumentParser::AttemptToEnd",
+      "ms": 8.1
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "summary": [
+    {
+      "username": "light",
+      "n": 5,
+      "statuses": [
+        200
+      ],
+      "noteLinks": [
+        3
+      ],
+      "loadMedian": 39.199999999953434,
+      "loadMin": 32.39999999990687,
+      "loadMax": 40.9000000001397,
+      "bytes": 15789
+    },
+    {
+      "username": "mid100",
+      "n": 5,
+      "statuses": [
+        200
+      ],
+      "noteLinks": [
+        100
+      ],
+      "loadMedian": 25.100000000093132,
+      "loadMin": 24.300000000046566,
+      "loadMax": 28.899999999906868,
+      "bytes": 41491
+    },
+    {
+      "username": "mid400",
+      "n": 5,
+      "statuses": [
+        200
+      ],
+      "noteLinks": [
+        400
+      ],
+      "loadMedian": 33.800000000046566,
+      "loadMin": 32,
+      "loadMax": 54.300000000046566,
+      "bytes": 121244
+    },
+    {
+      "username": "heavy",
+      "n": 5,
+      "statuses": [
+        200
+      ],
+      "noteLinks": [
+        5000
+      ],
+      "loadMedian": 284.69999999995343,
+      "loadMin": 256.5999999998603,
+      "loadMax": 284.89999999990687,
+      "bytes": 1339088
+    }
+  ],
+  "rows": [
+    {
+      "username": "light",
+      "status": 200,
+      "noteLinks": 3,
+      "loadMs": 40.9000000001397,
+      "ttfbMs": 8.199999999953434,
+      "decodedBodySize": 15789
+    },
+    {
+      "username": "mid100",
+      "status": 200,
+      "noteLinks": 100,
+      "loadMs": 28.899999999906868,
+      "ttfbMs": 11.5,
+      "decodedBodySize": 41491
+    },
+    {
+      "username": "mid400",
+      "status": 200,
+      "noteLinks": 400,
+      "loadMs": 54.300000000046566,
+      "ttfbMs": 22.5,
+      "decodedBodySize": 121244
+    },
+    {
+      "username": "heavy",
+      "status": 200,
+      "noteLinks": 5000,
+      "loadMs": 284.89999999990687,
+      "ttfbMs": 119.39999999990687,
+      "decodedBodySize": 1339088
+    },
+    {
+      "username": "light",
+      "status": 200,
+      "noteLinks": 3,
+      "loadMs": 39.199999999953434,
+      "ttfbMs": 11.699999999953434,
+      "decodedBodySize": 15789
+    },
+    {
+      "username": "mid100",
+      "status": 200,
+      "noteLinks": 100,
+      "loadMs": 25.100000000093132,
+      "ttfbMs": 7,
+      "decodedBodySize": 41491
+    },
+    {
+      "username": "mid400",
+      "status": 200,
+      "noteLinks": 400,
+      "loadMs": 43.199999999953434,
+      "ttfbMs": 15.399999999906868,
+      "decodedBodySize": 121244
+    },
+    {
+      "username": "heavy",
+      "status": 200,
+      "noteLinks": 5000,
+      "loadMs": 284.69999999995343,
+      "ttfbMs": 116.19999999995343,
+      "decodedBodySize": 1339088
+    },
+    {
+      "username": "light",
+      "status": 200,
+      "noteLinks": 3,
+      "loadMs": 33,
+      "ttfbMs": 9.100000000093132,
+      "decodedBodySize": 15789
+    },
+    {
+      "username": "mid100",
+      "status": 200,
+      "noteLinks": 100,
+      "loadMs": 25,
+      "ttfbMs": 7.800000000046566,
+      "decodedBodySize": 41491
+    },
+    {
+      "username": "mid400",
+      "status": 200,
+      "noteLinks": 400,
+      "loadMs": 32,
+      "ttfbMs": 12.100000000093132,
+      "decodedBodySize": 121244
+    },
+    {
+      "username": "heavy",
+      "status": 200,
+      "noteLinks": 5000,
+      "loadMs": 270.5,
+      "ttfbMs": 93.30000000004657,
+      "decodedBodySize": 1339088
+    },
+    {
+      "username": "light",
+      "status": 200,
+      "noteLinks": 3,
+      "loadMs": 32.39999999990687,
+      "ttfbMs": 6.300000000046566,
+      "decodedBodySize": 15789
+    },
+    {
+      "username": "mid100",
+      "status": 200,
+      "noteLinks": 100,
+      "loadMs": 24.300000000046566,
+      "ttfbMs": 6.399999999906868,
+      "decodedBodySize": 41491
+    },
+    {
+      "username": "mid400",
+      "status": 200,
+      "noteLinks": 400,
+      "loadMs": 33.800000000046566,
+      "ttfbMs": 12.600000000093132,
+      "decodedBodySize": 121244
+    },
+    {
+      "username": "heavy",
+      "status": 200,
+      "noteLinks": 5000,
+      "loadMs": 284.89999999990687,
+      "ttfbMs": 107.89999999990687,
+      "decodedBodySize": 1339088
+    },
+    {
+      "username": "light",
+      "status": 200,
+      "noteLinks": 3,
+      "loadMs": 39.9000000001397,
+      "ttfbMs": 12.400000000139698,
+      "decodedBodySize": 15789
+    },
+    {
+      "username": "mid100",
+      "status": 200,
+      "noteLinks": 100,
+      "loadMs": 27.100000000093132,
+      "ttfbMs": 9.100000000093132,
+      "decodedBodySize": 41491
+    },
+    {
+      "username": "mid400",
+      "status": 200,
+      "noteLinks": 400,
+      "loadMs": 33.800000000046566,
+      "ttfbMs": 13.300000000046566,
+      "decodedBodySize": 121244
+    },
+    {
+      "username": "heavy",
+      "status": 200,
+      "noteLinks": 5000,
+      "loadMs": 256.5999999998603,
+      "ttfbMs": 92.39999999990687,
+      "decodedBodySize": 1339088
+    }
+  ]
+}

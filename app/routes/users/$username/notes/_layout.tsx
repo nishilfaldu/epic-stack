@@ -7,28 +7,28 @@ import { prisma } from '#app/utils/db.server.ts'
 import { cn, getUserImgSrc } from '#app/utils/misc.tsx'
 import { useOptionalUser } from '#app/utils/user.ts'
 import { type Route } from './+types/_layout.ts'
+import {
+	loadNoteSidebar,
+	type NoteSidebar,
+} from './sidebar.server.ts'
 
-export async function loader({ params }: Route.LoaderArgs) {
-	const owner = await prisma.user.findFirst({
-		select: {
-			id: true,
-			name: true,
-			username: true,
-			image: { select: { objectKey: true } },
-			notes: { select: { id: true, title: true } },
-		},
-		where: { username: params.username },
+export async function loader({ params, request }: Route.LoaderArgs) {
+	const result = await loadNoteSidebar(prisma, {
+		username: params.username,
+		url: new URL(request.url),
+	})
+	invariantResponse(result.ok, result.ok ? 'Owner not found' : result.message, {
+		status: result.ok ? 404 : result.status,
 	})
 
-	invariantResponse(owner, 'Owner not found', { status: 404 })
-
-	return { owner }
+	return { sidebar: result.sidebar }
 }
 
 export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 	const user = useOptionalUser()
-	const isOwner = user?.id === loaderData.owner.id
-	const ownerDisplayName = loaderData.owner.name ?? loaderData.owner.username
+	const owner = loaderData.sidebar.owner
+	const isOwner = user?.id === owner.id
+	const ownerDisplayName = owner.name ?? owner.username
 	const navLinkDefaultClassName =
 		'line-clamp-2 block rounded-l-full py-2 pl-8 pr-6 text-base lg:text-xl'
 	return (
@@ -37,11 +37,11 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 				<div className="relative col-span-1">
 					<div className="absolute inset-0 flex flex-col">
 						<Link
-							to={`/users/${loaderData.owner.username}`}
+							to={`/users/${owner.username}`}
 							className="bg-muted flex flex-col items-center justify-center gap-2 pt-12 pr-4 pb-4 pl-8 xl:flex-row xl:justify-start xl:gap-4"
 						>
 							<Img
-								src={getUserImgSrc(loaderData.owner.image?.objectKey)}
+								src={getUserImgSrc(owner.image?.objectKey)}
 								alt={ownerDisplayName}
 								className="size-16 rounded-full object-cover xl:size-24"
 								width={256}
@@ -51,7 +51,7 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 								{ownerDisplayName}'s Notes
 							</h1>
 						</Link>
-						<ul className="overflow-x-hidden overflow-y-auto pb-12">
+						<ul className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pb-12">
 							{isOwner ? (
 								<li className="p-1 pr-0">
 									<NavLink
@@ -64,7 +64,7 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 									</NavLink>
 								</li>
 							) : null}
-							{loaderData.owner.notes.map((note) => (
+							{loaderData.sidebar.links.map((note) => (
 								<li key={note.id} className="p-1 pr-0">
 									<NavLink
 										to={note.id}
@@ -79,6 +79,7 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 								</li>
 							))}
 						</ul>
+						<SidebarPagerNav sidebar={loaderData.sidebar} />
 					</div>
 				</div>
 				<div className="bg-accent relative col-span-3 md:rounded-r-3xl">
@@ -87,6 +88,32 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 			</div>
 		</main>
 	)
+}
+
+function SidebarPagerNav({ sidebar }: { sidebar: NoteSidebar }) {
+	switch (sidebar.kind) {
+		case 'all':
+			return null
+		case 'page':
+			return (
+				<nav className="flex shrink-0 gap-4 px-8 py-3 text-base lg:text-xl">
+					{sidebar.pager.newerTo ? (
+						<Link to={sidebar.pager.newerTo} preventScrollReset>
+							Newer
+						</Link>
+					) : null}
+					{sidebar.pager.olderTo ? (
+						<Link to={sidebar.pager.olderTo} preventScrollReset>
+							Older
+						</Link>
+					) : null}
+				</nav>
+			)
+		default: {
+			const unreachable: never = sidebar
+			return unreachable
+		}
+	}
 }
 
 export function ErrorBoundary() {

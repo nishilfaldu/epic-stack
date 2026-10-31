@@ -1,0 +1,750 @@
+{
+  "claim": "Median of 10 full browser loads of /users/heavy/notes on a local production build. Assets warmed by one homepage load. Document cache avoided with a unique bench query. Alternating with the 3-note account. Reachability walks Older until every note id has been seen.",
+  "base": "http://127.0.0.1:3000",
+  "healthStatus": 200,
+  "expected": 5000,
+  "errors": [],
+  "heavy": {
+    "n": 10,
+    "statuses": [
+      200
+    ],
+    "noteLinks": [
+      100
+    ],
+    "loadMs": {
+      "median": 27.799999999813735,
+      "min": 23.100000000093132,
+      "max": 52,
+      "values": [
+        52,
+        28.600000000093132,
+        26,
+        25.399999999906868,
+        28.800000000279397,
+        28,
+        24.5,
+        27.899999999906868,
+        27.699999999720603,
+        23.100000000093132
+      ]
+    },
+    "ttfbMs": {
+      "median": 9,
+      "min": 7.2999999998137355,
+      "max": 14.099999999627471
+    },
+    "decodedBodySize": [
+      41413
+    ],
+    "domNodes": [
+      307
+    ]
+  },
+  "light": {
+    "n": 10,
+    "statuses": [
+      200
+    ],
+    "noteLinks": [
+      3
+    ],
+    "loadMs": {
+      "median": 22.3499999998603,
+      "min": 20.100000000093132,
+      "max": 26.800000000279397,
+      "values": [
+        23.799999999813735,
+        20.100000000093132,
+        23.09999999962747,
+        24.899999999906868,
+        23.5,
+        20.5,
+        20.600000000093132,
+        26.800000000279397,
+        20.799999999813735,
+        21.600000000093132
+      ]
+    },
+    "ttfbMs": {
+      "median": 5.350000000093132,
+      "min": 4.600000000093132,
+      "max": 7.2999999998137355
+    },
+    "decodedBodySize": [
+      15884
+    ],
+    "domNodes": [
+      111
+    ]
+  },
+  "reachability": {
+    "seen": 5000,
+    "expected": 5000,
+    "complete": true,
+    "steps": [
+      {
+        "step": 0,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?bench=reach",
+        "visible": 100,
+        "added": 100,
+        "seen": 100,
+        "olderCount": 1
+      },
+      {
+        "step": 1,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 200,
+        "olderCount": 1
+      },
+      {
+        "step": 2,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 300,
+        "olderCount": 1
+      },
+      {
+        "step": 3,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 400,
+        "olderCount": 1
+      },
+      {
+        "step": 4,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 500,
+        "olderCount": 1
+      },
+      {
+        "step": 5,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NTAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 600,
+        "olderCount": 1
+      },
+      {
+        "step": 6,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NjAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 700,
+        "olderCount": 1
+      },
+      {
+        "step": 7,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NzAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 800,
+        "olderCount": 1
+      },
+      {
+        "step": 8,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=ODAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 900,
+        "olderCount": 1
+      },
+      {
+        "step": 9,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=OTAw",
+        "visible": 100,
+        "added": 100,
+        "seen": 1000,
+        "olderCount": 1
+      },
+      {
+        "step": 10,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTAwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1100,
+        "olderCount": 1
+      },
+      {
+        "step": 11,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTEwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1200,
+        "olderCount": 1
+      },
+      {
+        "step": 12,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTIwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1300,
+        "olderCount": 1
+      },
+      {
+        "step": 13,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTMwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1400,
+        "olderCount": 1
+      },
+      {
+        "step": 14,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTQwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1500,
+        "olderCount": 1
+      },
+      {
+        "step": 15,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTUwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1600,
+        "olderCount": 1
+      },
+      {
+        "step": 16,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTYwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1700,
+        "olderCount": 1
+      },
+      {
+        "step": 17,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTcwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1800,
+        "olderCount": 1
+      },
+      {
+        "step": 18,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTgwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 1900,
+        "olderCount": 1
+      },
+      {
+        "step": 19,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MTkwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2000,
+        "olderCount": 1
+      },
+      {
+        "step": 20,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjAwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2100,
+        "olderCount": 1
+      },
+      {
+        "step": 21,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjEwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2200,
+        "olderCount": 1
+      },
+      {
+        "step": 22,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjIwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2300,
+        "olderCount": 1
+      },
+      {
+        "step": 23,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjMwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2400,
+        "olderCount": 1
+      },
+      {
+        "step": 24,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjQwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2500,
+        "olderCount": 1
+      },
+      {
+        "step": 25,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjUwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2600,
+        "olderCount": 1
+      },
+      {
+        "step": 26,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjYwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2700,
+        "olderCount": 1
+      },
+      {
+        "step": 27,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjcwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2800,
+        "olderCount": 1
+      },
+      {
+        "step": 28,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjgwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 2900,
+        "olderCount": 1
+      },
+      {
+        "step": 29,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MjkwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3000,
+        "olderCount": 1
+      },
+      {
+        "step": 30,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzAwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3100,
+        "olderCount": 1
+      },
+      {
+        "step": 31,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzEwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3200,
+        "olderCount": 1
+      },
+      {
+        "step": 32,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzIwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3300,
+        "olderCount": 1
+      },
+      {
+        "step": 33,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzMwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3400,
+        "olderCount": 1
+      },
+      {
+        "step": 34,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzQwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3500,
+        "olderCount": 1
+      },
+      {
+        "step": 35,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzUwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3600,
+        "olderCount": 1
+      },
+      {
+        "step": 36,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzYwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3700,
+        "olderCount": 1
+      },
+      {
+        "step": 37,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzcwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3800,
+        "olderCount": 1
+      },
+      {
+        "step": 38,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzgwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 3900,
+        "olderCount": 1
+      },
+      {
+        "step": 39,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=MzkwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4000,
+        "olderCount": 1
+      },
+      {
+        "step": 40,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDAwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4100,
+        "olderCount": 1
+      },
+      {
+        "step": 41,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDEwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4200,
+        "olderCount": 1
+      },
+      {
+        "step": 42,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDIwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4300,
+        "olderCount": 1
+      },
+      {
+        "step": 43,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDMwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4400,
+        "olderCount": 1
+      },
+      {
+        "step": 44,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDQwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4500,
+        "olderCount": 1
+      },
+      {
+        "step": 45,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDUwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4600,
+        "olderCount": 1
+      },
+      {
+        "step": 46,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDYwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4700,
+        "olderCount": 1
+      },
+      {
+        "step": 47,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDcwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4800,
+        "olderCount": 1
+      },
+      {
+        "step": 48,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDgwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 4900,
+        "olderCount": 1
+      },
+      {
+        "step": 49,
+        "url": "http://127.0.0.1:3000/users/heavy/notes?at=NDkwMA",
+        "visible": 100,
+        "added": 100,
+        "seen": 5000,
+        "olderCount": 0
+      }
+    ]
+  },
+  "loads": [
+    {
+      "username": "heavy",
+      "index": 0,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=0",
+      "loadMs": 52,
+      "dclMs": 41.1999999997206,
+      "ttfbMs": 14.099999999627471,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 0,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=0",
+      "loadMs": 23.799999999813735,
+      "dclMs": 19.100000000093132,
+      "ttfbMs": 7,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 1,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=1",
+      "loadMs": 28.600000000093132,
+      "dclMs": 26.5,
+      "ttfbMs": 9.200000000186265,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 1,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=1",
+      "loadMs": 20.100000000093132,
+      "dclMs": 17,
+      "ttfbMs": 5.100000000093132,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 2,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=2",
+      "loadMs": 26,
+      "dclMs": 22.399999999906868,
+      "ttfbMs": 10,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 2,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=2",
+      "loadMs": 23.09999999962747,
+      "dclMs": 20,
+      "ttfbMs": 6.899999999906868,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 3,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=3",
+      "loadMs": 25.399999999906868,
+      "dclMs": 21.899999999906868,
+      "ttfbMs": 9.899999999906868,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 3,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=3",
+      "loadMs": 24.899999999906868,
+      "dclMs": 21.899999999906868,
+      "ttfbMs": 7.2999999998137355,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 4,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=4",
+      "loadMs": 28.800000000279397,
+      "dclMs": 21.600000000093132,
+      "ttfbMs": 8.799999999813735,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 4,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=4",
+      "loadMs": 23.5,
+      "dclMs": 20.600000000093132,
+      "ttfbMs": 6.2999999998137355,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 5,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=5",
+      "loadMs": 28,
+      "dclMs": 24.399999999906868,
+      "ttfbMs": 11.699999999720603,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 5,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=5",
+      "loadMs": 20.5,
+      "dclMs": 17.40000000037253,
+      "ttfbMs": 5.100000000093132,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 6,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=6",
+      "loadMs": 24.5,
+      "dclMs": 20.899999999906868,
+      "ttfbMs": 8,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 6,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=6",
+      "loadMs": 20.600000000093132,
+      "dclMs": 17.700000000186265,
+      "ttfbMs": 4.600000000093132,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 7,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=7",
+      "loadMs": 27.899999999906868,
+      "dclMs": 22.300000000279397,
+      "ttfbMs": 8.700000000186265,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 7,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=7",
+      "loadMs": 26.800000000279397,
+      "dclMs": 22.5,
+      "ttfbMs": 5.399999999906868,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 8,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=8",
+      "loadMs": 27.699999999720603,
+      "dclMs": 25.699999999720603,
+      "ttfbMs": 8.200000000186265,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 8,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=8",
+      "loadMs": 20.799999999813735,
+      "dclMs": 17.399999999906868,
+      "ttfbMs": 4.7999999998137355,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    },
+    {
+      "username": "heavy",
+      "index": 9,
+      "status": 200,
+      "noteLinks": 100,
+      "finalUrl": "http://127.0.0.1:3000/users/heavy/notes?bench=9",
+      "loadMs": 23.100000000093132,
+      "dclMs": 19.399999999906868,
+      "ttfbMs": 7.2999999998137355,
+      "decodedBodySize": 41413,
+      "domNodes": 307,
+      "heading": "heavy's Notes"
+    },
+    {
+      "username": "light",
+      "index": 9,
+      "status": 200,
+      "noteLinks": 3,
+      "finalUrl": "http://127.0.0.1:3000/users/light/notes?bench=9",
+      "loadMs": 21.600000000093132,
+      "dclMs": 18.600000000093132,
+      "ttfbMs": 5.300000000279397,
+      "decodedBodySize": 15884,
+      "domNodes": 111,
+      "heading": "light's Notes"
+    }
+  ]
+}
