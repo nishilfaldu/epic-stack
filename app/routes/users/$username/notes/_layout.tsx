@@ -64,30 +64,30 @@ export default function NotesRoute({ loaderData }: Route.ComponentProps) {
 									</NavLink>
 								</li>
 							))}
+							{isOwner ? (
+								<li>
+									<h2 className="px-8 pt-6 text-base font-bold lg:text-xl">
+										Shared with me
+									</h2>
+									<ul>
+										{loaderData.sharedNotes.map((note) => (
+											<li key={note.id} className="p-1 pr-0">
+												<NavLink
+													to={`/users/${note.ownerUsername}/notes/${note.id}`}
+													preventScrollReset
+													prefetch="intent"
+													className={({ isActive }) =>
+														cn(navLinkDefaultClassName, isActive && 'bg-accent')
+													}
+												>
+													{note.title}
+												</NavLink>
+											</li>
+										))}
+									</ul>
+								</li>
+							) : null}
 						</ul>
-						{isOwner ? (
-							<div className="overflow-x-hidden overflow-y-auto pb-12">
-								<h2 className="px-8 pt-6 text-base font-bold lg:text-xl">
-									Shared with me
-								</h2>
-								<ul>
-									{loaderData.sharedNotes.map((note) => (
-										<li key={note.id} className="p-1 pr-0">
-											<NavLink
-												to={`/users/${note.ownerUsername}/notes/${note.id}`}
-												preventScrollReset
-												prefetch="intent"
-												className={({ isActive }) =>
-													cn(navLinkDefaultClassName, isActive && 'bg-accent')
-												}
-											>
-												{note.title}
-											</NavLink>
-										</li>
-									))}
-								</ul>
-							</div>
-						) : null}
 					</div>
 				</div>
 				<div className="bg-accent relative col-span-3 md:rounded-r-3xl">
