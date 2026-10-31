@@ -1,0 +1,6 @@
+command: npm run typecheck
+     -> https://reactrouter.com/upgrading/future-flags#v8_passThroughRequests
+  ⚠️  Future Flag Warning: Data request URL formats are changing in React Router v8.
+     You can use the `future.v8_trailingSlashAwareDataRequests` flag to opt in early.
+     -> https://reactrouter.com/upgrading/future-flags#v8_trailingSlashAwareDataRequests
+EXIT:0

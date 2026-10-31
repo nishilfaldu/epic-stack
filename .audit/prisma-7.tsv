@@ -1,0 +1,4 @@
+ts	phase	decision	why	evidence	result
+2026-10-31T00:32:03Z	frame	Recorded prisma 6.19.2, @prisma/client 6.19.2, and @prisma/instrumentation 6.19.2 on main	The upgrade has to leave data and passing tests unchanged, so these versions are the before state	.audit/baseline-versions.txt	prisma 6.19.2
+2026-10-31T00:32:03Z	harness	Ran vitest, typecheck, and Playwright on main before editing	A failure after the upgrade is a regression only where this run passed	.audit/baseline-vitest.txt	vitest 42 passed, typecheck exit 0, playwright 24 passed and 2 failed
+2026-10-31T00:32:03Z	harness	Seeded a fresh SQLite file with Prisma 6 migrate deploy and db seed, then counted every table	The same file must show these counts after Prisma 7 opens it and again on Prisma 6	.audit/baseline-seed-counts.tsv	14 tables, User 6, Note 24, NoteImage 36

@@ -1,0 +1,32 @@
+command: npx playwright test --reporter=line
+
+[2/26] [chromium] › tests/e2e/2fa.test.ts:5:1 › Users can add 2FA to their account and use it when logging in
+[3/26] [chromium] › tests/e2e/note-images.test.ts:6:1 › Users can create note with an image
+[4/26] [chromium] › tests/e2e/note-images.test.ts:35:1 › Users can create note with multiple images
+[5/26] [chromium] › tests/e2e/note-images.test.ts:71:1 › Users can edit note image
+1) [chromium] › tests/e2e/2fa.test.ts:5:1 › Users can add 2FA to their account and use it when logging in
+Test timeout of 15000ms exceeded.
+Error: expect(locator).toBeVisible() failed
+Error: element(s) not found
+- Expect "toBeVisible" with timeout 5000ms
+> 62 | 	await expect(page.getByRole('link', { name: 'User menu' })).toBeVisible()
+Error Context: test-results/2fa-Users-can-add-2FA-to-t-546d6--and-use-it-when-logging-in-chromium/error-context.md
+[6/26] [chromium] › tests/e2e/note-images.test.ts:100:1 › Users can delete note image
+[7/26] [chromium] › tests/e2e/notes.test.ts:5:1 › Users can create notes
+[8/26] [chromium] › tests/e2e/notes.test.ts:20:1 › Users can edit notes
+[9/26] [chromium] › tests/e2e/notes.test.ts:47:1 › Users can delete notes
+[18/26] [chromium] › tests/e2e/passkey.test.ts:22:1 › Users can register and use passkeys
+[21/26] [chromium] › tests/e2e/settings-profile.test.ts:10:1 › Users can update their basic info
+[22/26] [chromium] › tests/e2e/settings-profile.test.ts:24:1 › Users can update their password
+[23/26] [chromium] › tests/e2e/settings-profile.test.ts:55:1 › Users can update their profile photo
+2) [chromium] › tests/e2e/settings-profile.test.ts:55:1 › Users can update their profile photo ───
+Error: locator.setInputFiles: Error: Node is not an HTMLInputElement
+> 72 | 	await page
+74 | 		.setInputFiles('./tests/fixtures/images/user/kody.png')
+Error Context: test-results/settings-profile-Users-can-update-their-profile-photo-chromium/error-context.md
+[26/26] [chromium] › tests/e2e/settings-profile.test.ts:93:1 › Users can change their email address
+2 failed
+[chromium] › tests/e2e/2fa.test.ts:5:1 › Users can add 2FA to their account and use it when logging in
+[chromium] › tests/e2e/settings-profile.test.ts:55:1 › Users can update their profile photo ────
+24 passed (54.7s)
+EXIT:1
