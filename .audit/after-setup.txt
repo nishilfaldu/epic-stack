@@ -1,0 +1,4 @@
+command: bash .cursor/install.sh
+EXIT:0
+prisma 7.10.1
+datasource file:/workspace/prisma/data.db

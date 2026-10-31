@@ -90,9 +90,10 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 ```
+
+`prisma.config.ts` sets `datasource.url` from `DATABASE_URL`.
 
 **Basic model:**
 

@@ -30,7 +30,7 @@ cd ~/Desktop/epic-stack
 cp .env.example .env
 npm install
 npm run setup          # build, prisma migrate deploy, prisma generate --sql, playwright install
-npx prisma@6 db seed
+npx prisma db seed
 npm run dev            # NODE_ENV=development MOCKS=true
 ```
 

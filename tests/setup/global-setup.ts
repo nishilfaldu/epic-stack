@@ -24,16 +24,13 @@ export async function setup() {
 		}
 	}
 
-	await execaCommand(
-		'npx prisma migrate reset --force --skip-seed --skip-generate',
-		{
-			stdio: 'inherit',
-			env: {
-				...process.env,
-				DATABASE_URL: `file:${BASE_DATABASE_PATH}`,
-				// allow AI agents to reset the database while running tests
-				PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION: 'true',
-			},
+	await execaCommand('npx prisma migrate reset --force', {
+		stdio: 'inherit',
+		env: {
+			...process.env,
+			DATABASE_URL: `file:${BASE_DATABASE_PATH}`,
+			// allow AI agents to reset the database while running tests
+			PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION: 'true',
 		},
-	)
+	})
 }

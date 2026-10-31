@@ -1,0 +1,22 @@
+command: npx playwright test --reporter=line
+
+[13/26] [chromium] › tests/e2e/onboarding.test.ts:197:1 › logs user in after GitHub OAuth if they are already registered
+[14/26] [chromium] › tests/e2e/onboarding.test.ts:247:1 › shows help texts on entering invalid details on onboarding page after GitHub OAuth
+[15/26] [chromium] › tests/e2e/onboarding.test.ts:337:1 › login as existing user
+[16/26] [chromium] › tests/e2e/onboarding.test.ts:350:1 › reset password with a link
+[17/26] [chromium] › tests/e2e/onboarding.test.ts:408:1 › reset password with a short code
+[18/26] [chromium] › tests/e2e/passkey.test.ts:22:1 › Users can register and use passkeys
+[19/26] [chromium] › tests/e2e/passkey.test.ts:131:1 › Failed passkey verification shows error
+[20/26] [chromium] › tests/e2e/search.test.ts:3:1 › Search from home page
+[21/26] [chromium] › tests/e2e/settings-profile.test.ts:10:1 › Users can update their basic info
+[22/26] [chromium] › tests/e2e/settings-profile.test.ts:24:1 › Users can update their password
+[23/26] [chromium] › tests/e2e/settings-profile.test.ts:55:1 › Users can update their profile photo
+Error: locator.setInputFiles: Error: Node is not an HTMLInputElement
+74 | 		.setInputFiles('./tests/fixtures/images/user/kody.png')
+[24/26] [chromium] › tests/e2e/static-files.test.ts:3:1 › files in public/img and public/favicons are served
+[25/26] [chromium] › tests/e2e/static-files.test.ts:15:1 › missing files in /img and /favicons return 404
+[26/26] [chromium] › tests/e2e/settings-profile.test.ts:93:1 › Users can change their email address
+1 failed
+[chromium] › tests/e2e/settings-profile.test.ts:55:1 › Users can update their profile photo ────
+25 passed (45.3s)
+EXIT:1
