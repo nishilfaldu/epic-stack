@@ -1,0 +1,3 @@
+userHasPermission agrees with the permission-string rule on 65536 single-role sets and 24 requests.
+helper mismatches: 0
+note-delete mismatches, including both ownership values for every set: 0

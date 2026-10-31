@@ -79,26 +79,32 @@ function actionSource() {
 	return source.slice(start, end)
 }
 
-function assertActionModel() {
-	const action = actionSource()
-	const hasOwnGate = action.includes(
-		"requireUserWithPermission(request, 'delete:note:own')",
-	)
-	const hasAnyGate = action.includes(
-		"requireUserWithPermission(request, 'delete:note:any')",
+function readDeleteChoice(action: string) {
+	const choice = action.match(
+		/const isOwner = note\.ownerId === userId\s+await requireUserWithPermission\(\s*request,\s*isOwner \? `delete:note:(own|any)` : `delete:note:(own|any)`,\s*\)/s,
 	)
 	const deletesById = action.includes('prisma.note.delete')
-	const mentionsOwner = action.includes('ownerId')
-	if (!(hasOwnGate && !hasAnyGate && deletesById && !mentionsOwner)) {
+	if (!choice || !deletesById) {
 		console.error(
 			'The note delete action no longer matches this model. Read app/routes/users/$username/notes/$noteId.tsx and update the checker before trusting the result.',
 		)
 		process.exit(2)
 	}
+	return {
+		whenOwner: choice[1],
+		whenNotOwner: choice[2],
+	}
 }
 
-function actionAllows(permissions: Array<StoredPermission>) {
-	return userHasPermission(actor(permissions), 'delete:note:own')
+const deleteChoice = readDeleteChoice(actionSource())
+
+function actionAllows(permissions: Array<StoredPermission>, ownsNote: boolean) {
+	const access = ownsNote ? deleteChoice.whenOwner : deleteChoice.whenNotOwner
+	if (access !== 'own' && access !== 'any') {
+		throw new Error(`unexpected delete access ${access}`)
+	}
+	const request: PermissionString = `delete:note:${access}`
+	return userHasPermission(actor(permissions), request)
 }
 
 function intendedAllows(
@@ -164,14 +170,12 @@ if (userHasPermission(null, 'delete:note:any') !== false) {
 	console.error('userHasPermission(null) returned true')
 }
 
-assertActionModel()
-
 function reportFinding(
 	label: string,
 	permissions: Array<StoredPermission>,
 	ownsNote: boolean,
 ) {
-	const allowed = actionAllows(permissions)
+	const allowed = actionAllows(permissions, ownsNote)
 	const intended = intendedAllows(permissions, ownsNote)
 	if (allowed === intended) return
 	const ownership = ownsNote ? 'owns the note' : 'does not own the note'
@@ -190,7 +194,10 @@ let findingCount = 0
 for (let mask = 0; mask < subsetCount; mask += 1) {
 	const permissions = CATALOG.filter((_, index) => (mask & (1 << index)) !== 0)
 	for (const ownsNote of [true, false]) {
-		if (actionAllows(permissions) !== intendedAllows(permissions, ownsNote)) {
+		if (
+			actionAllows(permissions, ownsNote) !==
+			intendedAllows(permissions, ownsNote)
+		) {
 			findingCount += 1
 		}
 	}

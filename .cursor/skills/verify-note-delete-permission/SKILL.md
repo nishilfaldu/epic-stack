@@ -57,24 +57,30 @@ roles are the union of those permissions, which is the same set as one role
 holding the union. The script does not open the database and does not call
 `requireUserWithPermission`.
 
-The note-delete check reads the `action` function. While that function still
-gates on `delete:note:own`, deletes by id, and never mentions `ownerId`, the
-model allows the delete exactly when `userHasPermission` allows
-`delete:note:own`. It compares that to the notes page rule for both ownership
-values and every permission subset.
+The note-delete check reads the `action` function. It expects `isOwner` to be
+`note.ownerId === userId`, then `requireUserWithPermission` with
+`delete:note:own` when `isOwner` is true and `delete:note:any` otherwise, and a
+`prisma.note.delete` of that note. The two captured accesses are what the model
+treats as the action's decision. It compares that decision to the notes page
+rule for both ownership values and every permission subset. `any` does not grant
+`own`.
 
 ## Current finding
 
-On commit `1c2c3b13117d5310db5ada8eb8f2dca3826ac603` the helper check passes and
-the note-delete check fails.
+On commit `81f4746aa846dc78cef7327c3f301df0b070c08b` the helper check passes and
+the note-delete check passes.
 
-The seeded `user` role, inserted in
-`prisma/migrations/20250221233640_init/migration.sql`, has `delete:note:own` and
-not `delete:note:any`. For a note that user does not own, the action allows the
-delete and the notes page does not. The seeded `admin` role has
-`delete:note:any` and not `delete:note:own`. For a note that admin does not own,
-the action denies the delete and the notes page shows it. Kody is not either of
-those cases, because the seed gives Kody both roles.
+The action reads `ownerId`, sets `isOwner` from `note.ownerId === userId`, and
+asks for `delete:note:own` when the caller owns the note and `delete:note:any`
+otherwise. That is the same choice the notes page makes.
+
+Commit `1c2c3b13117d5310db5ada8eb8f2dca3826ac603` asked every caller for
+`delete:note:own` and then deleted by id. On that commit the checker reported a
+note-delete mismatch. The seeded `user` role has `delete:note:own` and not
+`delete:note:any`, so a non-owner with that role was allowed by the action and
+denied by the page. The seeded `admin` role has `delete:note:any` and not
+`delete:note:own`, so a non-owner admin was denied by the action and allowed by
+the page.
 
 Leave the product code as it is unless the task asks to change deletion. Move
 the sync commit below forward only after you re-read the action and the helper
@@ -82,7 +88,7 @@ and the script still describes them.
 
 ## Sync commit
 
-`1c2c3b13117d5310db5ada8eb8f2dca3826ac603`
+`81f4746aa846dc78cef7327c3f301df0b070c08b`
 
 Covered files:
 

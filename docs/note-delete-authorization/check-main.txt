@@ -1,0 +1,6 @@
+Seeded user role. A user with delete:note:own who does not own the note is allowed by the action and denied by the notes page.
+Seeded admin role. A user with delete:note:any who does not own the note is denied by the action and allowed by the notes page.
+userHasPermission agrees with the permission-string rule on 65536 single-role sets and 24 requests.
+helper mismatches: 0
+note-delete mismatches, including both ownership values for every set: 32768
+Exit 1 is a failed check. A helper mismatch means userHasPermission disagrees with the rule in this file. A note-delete mismatch means app/routes/users/$username/notes/$noteId.tsx does not follow the same own versus any choice as the notes page.
