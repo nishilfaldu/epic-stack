@@ -14,8 +14,8 @@ export const meta: Route.MetaFunction = ({ params, matches }) => {
 		(m) => m?.id === 'routes/users/$username/notes',
 	) as { data: NotesRoute.ComponentProps['loaderData'] }
 
-	const displayName = notesMatch?.data?.owner.name ?? params.username
-	const noteCount = notesMatch?.data?.owner.notes.length ?? 0
+	const displayName = notesMatch?.data?.sidebar.owner.name ?? params.username
+	const noteCount = notesMatch?.data?.sidebar.noteCount ?? 0
 	const notesText = noteCount === 1 ? 'note' : 'notes'
 	return [
 		{ title: `${displayName}'s Notes | Epic Notes` },

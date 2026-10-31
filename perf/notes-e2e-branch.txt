@@ -1,0 +1,4 @@
+[1/3] [chromium] › tests/e2e/notes.test.ts:5:1 › Users can create notes
+[2/3] [chromium] › tests/e2e/notes.test.ts:20:1 › Users can edit notes
+[3/3] [chromium] › tests/e2e/notes.test.ts:47:1 › Users can delete notes
+3 passed (2.5s)
