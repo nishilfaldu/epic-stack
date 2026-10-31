@@ -6,3 +6,4 @@ ts	phase	decision	why	evidence	result
 2026-10-31T01:08:35Z	test	The first run failed on the missing Username field	The share form is the first thing a user would see that the old note page does not have	/tmp/note-share-proof/e2e-before.txt	1 failed
 2026-10-31T01:08:35Z	test	Waited for the note title before reading the id	The new-note URL matched the old check, so the viewer opened /notes/new/edit and saw a missing note instead of the 403	commit 3ce38d1	accepted
 2026-10-31T01:08:35Z	verify	Note sharing passed and the existing note tests still passed	The owner, viewer, and editor path is the done check, and notes plus note images must stay green	/tmp/note-share-proof/e2e-after.txt	1 passed and 7 passed
+2026-10-31T01:08:51Z	verify	The existing note tests are in their own proof file	The previous verify row pointed only at the new test's proof, so the 7 passed claim had no file	/tmp/note-share-proof/e2e-existing.txt	7 passed
