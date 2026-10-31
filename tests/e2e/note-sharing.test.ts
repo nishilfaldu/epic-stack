@@ -29,11 +29,10 @@ test('owner can share a note as viewer then editor, and revoke hides it', async 
 		await page.getByRole('textbox', { name: /title/i }).fill(title)
 		await page.getByRole('textbox', { name: /content/i }).fill(content)
 		await page.getByRole('button', { name: /submit/i }).click()
-		await expect(page).toHaveURL(
-			new RegExp(`/users/${owner.username}/notes/.+`),
-		)
+		await expect(page.getByRole('heading', { name: title })).toBeVisible()
 		const noteId = new URL(page.url()).pathname.split('/').at(-1)
 		expect(noteId).toBeTruthy()
+		expect(noteId).not.toBe('new')
 		const noteUrl = `/users/${owner.username}/notes/${noteId}`
 
 		await page
