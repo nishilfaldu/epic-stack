@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 /workspace
+
+ ✓ app/routes/_auth/reset-password.test.ts > resetting a password signs out all existing sessions 248ms
+ ✓ app/routes/_auth/verify.test.ts > 2FA login rejects a code for a different user than the unverified session 29ms
+ ✓ app/routes/_auth/verify.test.ts > 2FA login succeeds when the code matches the unverified session user 9ms
+ ✓ app/routes/_auth/verify.test.ts > reverify rejects a 2FA code for a different user than the logged-in session 16ms
+ ✓ app/routes/_auth/verify.test.ts > reverify succeeds when the code matches the logged-in user 10ms
+ ✓ app/routes/_auth/verify.test.ts > recent verification within two hours does not require reverify 5ms
+ ✓ app/routes/_auth/verify.test.ts > verification older than two hours requires reverify 6ms
+ ✓ app/routes/_auth/reset-password-concurrency.test.ts > a reset code is refused after the first submit has finished 25ms
+ ✓ app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together 282ms
+
+ Test Files  3 passed (3)
+      Tests  9 passed (9)
+   Start at  00:32:24
+   Duration  1.79s (transform 711ms, setup 1.94s, import 1.72s, tests 638ms, environment 0ms)
+

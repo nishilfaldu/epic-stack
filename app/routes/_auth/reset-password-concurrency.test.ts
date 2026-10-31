@@ -15,31 +15,24 @@ import {
 const ROUTE_PATH = '/verify'
 const ATTEMPTS = 50
 
+test('a reset code is refused after the first submit has finished', async () => {
+	const { otp, username } = await issueResetCode()
+
+	const first = classifyVerifyResponse(await submitResetCode(otp, username))
+	const second = classifyVerifyResponse(await submitResetCode(otp, username))
+
+	expect({ first, second }).toEqual({ first: 'reset', second: 'invalid' })
+})
+
 test('one reset code reaches set-new-password once when submitted twice together', async () => {
 	const results: Array<{ reset: number; invalid: number; other: string[] }> = []
 
 	for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
-		const user = await prisma.user.create({
-			data: createUser(),
-			select: { username: true },
-		})
-		const { otp, ...verificationConfig } = await generateTOTP({
-			algorithm: 'SHA-256',
-			charSet: 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789',
-			period: 10 * 60,
-		})
-		await prisma.verification.create({
-			data: {
-				type: 'reset-password',
-				target: user.username,
-				...verificationConfig,
-				expiresAt: new Date(Date.now() + verificationConfig.period * 1000),
-			},
-		})
+		const { otp, username } = await issueResetCode()
 
 		const responses = await Promise.all([
-			submitResetCode(otp, user.username),
-			submitResetCode(otp, user.username),
+			submitResetCode(otp, username),
+			submitResetCode(otp, username),
 		])
 		const classified = responses.map(classifyVerifyResponse)
 		results.push({
@@ -58,7 +51,7 @@ test('one reset code reaches set-new-password once when submitted twice together
 	).length
 	const summary = { attempts: ATTEMPTS, doubled, refused, results }
 
-	expect(summary, JSON.stringify(summary)).toEqual({
+	expect(summary).toEqual({
 		attempts: ATTEMPTS,
 		doubled: 0,
 		refused: ATTEMPTS,
@@ -69,6 +62,27 @@ test('one reset code reaches set-new-password once when submitted twice together
 		})),
 	})
 })
+
+async function issueResetCode() {
+	const user = await prisma.user.create({
+		data: createUser(),
+		select: { username: true },
+	})
+	const { otp, ...verificationConfig } = await generateTOTP({
+		algorithm: 'SHA-256',
+		charSet: 'ABCDEFGHJKLMNPQRSTUVWXYZ123456789',
+		period: 10 * 60,
+	})
+	await prisma.verification.create({
+		data: {
+			type: 'reset-password',
+			target: user.username,
+			...verificationConfig,
+			expiresAt: new Date(Date.now() + verificationConfig.period * 1000),
+		},
+	})
+	return { otp, username: user.username }
+}
 
 function submitResetCode(code: string, target: string) {
 	return action({

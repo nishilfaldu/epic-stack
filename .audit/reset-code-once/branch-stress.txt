@@ -1,0 +1,11 @@
+
+ RUN  v4.0.18 /workspace
+
+ ✓ app/routes/_auth/reset-password-concurrency.test.ts > a reset code is refused after the first submit has finished 28ms
+ ✓ app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together 330ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  00:32:09
+   Duration  1.80s (transform 262ms, setup 548ms, import 678ms, tests 359ms, environment 0ms)
+
