@@ -144,9 +144,21 @@ async function consumeVerification({
 	type: VerificationTypes
 	target: string
 }) {
-	await prisma.verification.deleteMany({
+	const { count } = await prisma.verification.deleteMany({
 		where: { type, target },
 	})
+	return count > 0
+}
+
+function invalidCode(submission: VerifyFunctionArgs['submission']) {
+	return data(
+		{
+			result: submission.reply({
+				fieldErrors: { code: ['Invalid code'] },
+			}),
+		},
+		{ status: 400 },
+	)
 }
 
 export async function validateRequest(
@@ -185,15 +197,21 @@ export async function validateRequest(
 
 	switch (type) {
 		case 'reset-password': {
-			await consumeVerification({ type, target })
+			if (!(await consumeVerification({ type, target }))) {
+				return invalidCode(submission)
+			}
 			return handleResetPasswordVerification({ request, body, submission })
 		}
 		case 'onboarding': {
-			await consumeVerification({ type, target })
+			if (!(await consumeVerification({ type, target }))) {
+				return invalidCode(submission)
+			}
 			return handleOnboardingVerification({ request, body, submission })
 		}
 		case 'change-email': {
-			await consumeVerification({ type, target })
+			if (!(await consumeVerification({ type, target }))) {
+				return invalidCode(submission)
+			}
 			return handleChangeEmailVerification({ request, body, submission })
 		}
 		case '2fa': {

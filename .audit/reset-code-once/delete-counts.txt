@@ -1,0 +1,9 @@
+Instrumentation on unchanged consumeVerification, 3 overlapping pairs.
+Each line is one deleteMany. The test still reported doubled: 3, so both requests redirected.
+
+consumeVerification count=1 type=reset-password
+consumeVerification count=0 type=reset-password
+consumeVerification count=1 type=reset-password
+consumeVerification count=0 type=reset-password
+consumeVerification count=1 type=reset-password
+consumeVerification count=0 type=reset-password

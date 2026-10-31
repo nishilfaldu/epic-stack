@@ -1,0 +1,391 @@
+
+ RUN  v4.0.18 /workspace
+
+ ✓ app/routes/_auth/reset-password-concurrency.test.ts > a reset code is refused after the first submit has finished 26ms
+ × app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together 343ms
+   → expected { attempts: 50, doubled: 50, …(2) } to deeply equal { attempts: 50, doubled: +0, …(2) }
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  app/routes/_auth/reset-password-concurrency.test.ts > one reset code reaches set-new-password once when submitted twice together
+AssertionError: expected { attempts: 50, doubled: 50, …(2) } to deeply equal { attempts: 50, doubled: +0, …(2) }
+
+- Expected
++ Received
+
+  {
+    "attempts": 50,
+-   "doubled": 0,
+-   "refused": 50,
++   "doubled": 50,
++   "refused": 0,
+    "results": [
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+      {
+-       "invalid": 1,
++       "invalid": 0,
+        "other": [],
+-       "reset": 1,
++       "reset": 2,
+      },
+    ],
+  }
+
+ ❯ app/routes/_auth/reset-password-concurrency.test.ts:54:18
+     52|  const summary = { attempts: ATTEMPTS, doubled, refused, results }
+     53| 
+     54|  expect(summary).toEqual({
+       |                  ^
+     55|   attempts: ATTEMPTS,
+     56|   doubled: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  00:31:58
+   Duration  1.70s (transform 241ms, setup 488ms, import 638ms, tests 371ms, environment 0ms)
+
